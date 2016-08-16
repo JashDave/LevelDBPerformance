@@ -1,0 +1,19 @@
+#USE  
+#gnuplot -e "datafile='2016-08-11.17:42:08_SingleRead_2KB_100000.csv';nolines=95000" gplot_final.plg
+
+set macros
+
+#datafile = "2016-08-11.17:42:08_SingleRead_2KB_100000.csv"
+#nolines = 0
+desc = 'datafile' #"\"Single Read Data SameMachine Diff VM 2KB 100K\""
+xlab = "\"Iteration\""
+ylab = "\"Time (microsecond)\""
+
+skiplines(nol,fname) = sprintf("< awk '(NR> %d){print;}' %s",nol,fname);
+
+set title @desc
+set xlabel @xlab
+set ylabel @ylab
+set grid
+plot skiplines(nolines,datafile) title ""
+pause -1
