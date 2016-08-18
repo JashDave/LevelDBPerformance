@@ -1,7 +1,0 @@
-set datafile separator ","
-set autoscale
-plot "some.csv" using 1:2 with lines,\
-"some.csv" using 1:3 with lines
-#plot "some.csv" title "" with linespoints linestyle 5
-#plot "some.csv" using 2 every ::1 with linespoints linestyle 7
-pause -1

@@ -1,6 +1,0 @@
-set title "Single Read Data SameMachine Diff VM 2KB 100K"
-set xlabel "Iteration"
-set ylabel "Time (microsecond)"
-set grid
-plot "2016-08-11.17:42:08_SingleRead_2KB_100000.csv" title ""
-pause -1
