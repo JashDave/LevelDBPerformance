@@ -229,6 +229,7 @@ vector<string> receive(){
       }
     }
     v[i]=string(inputbuf,sz);
+    // cout<<v[i]<<endl;
   }
   return v;
 }

@@ -1,0 +1,20 @@
+single read (min/max/avg/also save all readings in .csv file)
+ -failed
+ -successfully
+   1 byte
+   10 byte
+   100 byte
+   1KB
+   50KB
+   1MB
+   10MB ?
+
+
+
+
+
+
+
+// At client side only
+put_one_million_entries()  OR
+put_given_no_of_entries(int no_of_entries,int entry_size) //Min entry size is 10B or ??

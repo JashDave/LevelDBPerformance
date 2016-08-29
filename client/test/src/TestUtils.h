@@ -30,11 +30,15 @@ const std::string currentDateTime() {
 
 
 class Measure {
-private:
+//private:
+public:
   double min=numeric_limits<double>::max(),max=-1,avg,sum=0,dur;
+  uint64_t st,ed;
   int count=0;
   high_resolution_clock::time_point t1,t2;
-  vector<double> entries;
+  vector<double> diff_entries;
+  vector<uint64_t> start_entries;
+  vector<uint64_t> end_entries;
 public:
   inline void start(){
     t1=high_resolution_clock::now();
@@ -43,14 +47,22 @@ public:
   //record end time and calc min,max,sum
     t2=high_resolution_clock::now();
     dur = duration_cast<microseconds>(t2 -t1).count();
-    entries.push_back(dur);
-    count++;// entries.size()
+    st = duration_cast<microseconds>(t1.time_since_epoch()).count();
+    ed = duration_cast<microseconds>(t2.time_since_epoch()).count();
+    diff_entries.push_back(dur);
+    start_entries.push_back(st);
+    end_entries.push_back(ed);
+    count++;// diff_entries.size()
     sum+=dur;
     if(min>dur){
       min=dur;
     } else if(max<dur){
       max=dur;
     }
+  }
+
+  double getAvg(){
+    return double(sum/(double)count);
   }
 
   void print(string desc){
@@ -82,8 +94,10 @@ public:
   avg=sum/count;
   file << "Min,Max,Avg,Count\n";
   file << min << "," << max << "," << avg << "," << count << "\n";
-  for(ll i=0;i<entries.size();i++){
-    file << entries[i] << "\n";
+  file << "\n";
+  file << "Duration,Start Time,End Time\n";
+  for(ll i=0;i<diff_entries.size();i++){
+    file << diff_entries[i] << "," << start_entries[i] << "," << end_entries[i] << "\n";
   }
   file.close();
   }

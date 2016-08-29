@@ -1,0 +1,11 @@
+virsh list | grep -v "jd_ubser"| awk '{if(NR>2){system("%s" $2}}'
+
+
+Reset to default:
+virsh list | awk '{if(NR>2){for(i=0;i<16;i++){system("virsh vcpupin " $2 " " i " 0-47")}}}'
+
+Set to pinned cpus:
+awk 'BEGIN{for(i=0;i<8;i++){system("virsh vcpupin jd_ubserver2 " i " " i)}}'
+awk 'BEGIN{for(i=0;i<8;i++){system("virsh vcpupin jd_ubserver3 " i " " i+40)}}'
+virsh list | grep -v "jd_ubser" | awk '{if(NR>2){for(i=0;i<16;i++){system("virsh vcpupin " $2 " " i " 8-11,32-35,12-15,36-39")}}}'
+

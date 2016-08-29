@@ -1,4 +1,14 @@
 awk '{
 if ($1 < 10000)
 print;
-}' 2016-08-16.12\:03\:33_SingleWrite_2KB_100000.csv > edited_write_2K.csv
+}' 2016-08-16.12\:01\:42_SingleWrite_1KB_100000.csv > edited_write_1K.csv
+
+
+
+
+#SAR output
+head -n 8 tbd | awk 'BEGIN {print "Averages"} {
+if (NR == 2) { print "CPU utilization: " 100-$9 "%" }
+else if (NR == 5) { print "Memory utilization: " $5 "%"  }
+else if (NR == 8) { print "Rx: " $6 " KBps \nTx: " $7 " KBps" }
+}'

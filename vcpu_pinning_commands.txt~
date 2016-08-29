@@ -1,0 +1,6 @@
+virsh list | grep -v "jd_ubser"| awk '{if(NR>2){system("%s" $2}}'
+
+virsh list | awk '{if(NR>2){for(i=0;i<16;i++){print("virsh vcpupin " $2 " " i " 0-47")}}}'
+
+
+virsh list | awk '{if(NR>2 && NR<5){for(i=0;i<16;i++){print( i " 0-47")}}}'

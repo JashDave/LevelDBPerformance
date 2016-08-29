@@ -57,9 +57,11 @@ func (cl *Client) performTask(strarr []string) ([]string,int){
     return []string{"true"},used
   case "Get":
     val,serr,ierr := cl.kvs.Get(strarr[1])
+    //fmt.Println("Getting","key",strarr[1],"Val",val);
     used++;
     return []string{val,serr,strconv.Itoa(ierr)},used
   case "Put":
+    //fmt.Println("Putting","key",strarr[1],"Val",strarr[2]);
     serr,ierr := cl.kvs.Put(strarr[1],strarr[2])
     used+=2;
     return []string{"",serr,strconv.Itoa(ierr)},used

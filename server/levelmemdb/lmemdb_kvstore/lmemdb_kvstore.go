@@ -30,7 +30,7 @@ import (
     if ok {
       kvs.db = db
     } else {
-      	db = memdb.New(comparer.DefaultComparer,100000)
+      	db = memdb.New(comparer.DefaultComparer,1000000000)
         tm.tablemap[tablename] = db
         kvs.db = db
     }
